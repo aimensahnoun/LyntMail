@@ -1,26 +1,73 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import AuthenticationPage from "./pages/authentication/authentication.component";
+import Dashboard from "./pages/dashboard/dashboard.component";
+import LandingPage from "./pages/landingPage/landingPage.component";
+
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { setCurrentUser } from "./redux/user/user.actions";
+import { selectCurrentUser } from "./redux/user/user.selector";
+
+import { auth, getUserData } from "./firebase/firebase.utils.js";
+import Subscription from "./pages/subscription/subscription.component";
+
+class App extends Component {
+  unsubscribeFromAuth = null;
+
+  componentDidMount() {
+    const { setCurrentUser } = this.props;
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const test = await getUserData(userAuth.uid);
+        setCurrentUser(test);
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
+  render() {
+    return (
+      <div className="App">
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route
+            exact
+            path="/authentication"
+            render={() =>
+              this.props.currentUser ? (
+                <Redirect to="/dashboard" />
+              ) : (
+                <AuthenticationPage />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/dashboard"
+            render={() =>
+              !this.props.currentUser ? (
+                <Redirect to="/authentication" />
+              ) : (
+                <Dashboard />
+              )
+            }
+          />
+          <Route exact path="/:href" component={Subscription} />
+        </Switch>
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (userData) => dispatch(setCurrentUser(userData)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
