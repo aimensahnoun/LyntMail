@@ -18,6 +18,7 @@ import {
   signInWithYahoo,
   signInWithGithub,
   handleSubscription,
+  signInWithTwitter,
 } from "../../firebase/subscription.utils";
 function SubscribeField({
   loggedIn,
@@ -30,6 +31,7 @@ function SubscribeField({
   setAlreadySubbed,
   apiKey,
   href,
+  isActive,
 }) {
   return alreadySubbed ? (
     <Container style={{ display: "flex", alignItems: "center" }}>
@@ -38,12 +40,18 @@ function SubscribeField({
       </Result>
     </Container>
   ) : done ? (
-    <Container style={{ display: "flex", alignItems: "center" }}>
-      <Result style={{ color: "#28A745" }}>
-        You have successfully subscribed to this newsletter
+    <Container
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Result style={{ color: "#28A745", textAlign: "center" }}>
+        Thank you! You may close this page
       </Result>
     </Container>
-  ) : !linkFound ? (
+  ) : !linkFound || !isActive ? (
     <Container style={{ display: "flex", alignItems: "center" }}>
       <h1 style={{ color: "#DC3545", fontSize: "1.7rem" }}>
         This link has either been deleted or deactivated.
@@ -54,8 +62,7 @@ function SubscribeField({
   ) : loggedIn ? (
     <Container>
       <Text>
-        You are trying to subscribe to this newsletter with {sub.email}, do you
-        want to continue?
+        Is {sub.email} good for you or do you want to use another one?
       </Text>
       <SubmitContainer>
         <h6
@@ -81,7 +88,7 @@ function SubscribeField({
   ) : (
     <Container>
       <h4>
-        Welcome to Swipe Mail, please choose a way to provide your information
+        Welcome to Lyntmail, please choose a way to provide your information
       </h4>
       <ButtonsContainer>
         <SocialButton
@@ -91,9 +98,15 @@ function SubscribeField({
         >
           <GrGoogle />
         </SocialButton>
-        <SocialButton color="#34D1F7" tooltip="Twitter">
+
+        {/* <SocialButton
+          color="#34D1F7"
+          tooltip="Twitter"
+          onClick={signInWithTwitter}
+        >
           <GrTwitter />
-        </SocialButton>
+        </SocialButton> */}
+        
         <SocialButton
           color="#4064AC"
           tooltip="Facebook"

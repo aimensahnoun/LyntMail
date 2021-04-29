@@ -45,7 +45,7 @@ function Campaigns({ subscribers, CSVData }) {
         >
           <CSVLink
             data={CSVData}
-            filename={"SwipeMail.csv"}
+            filename={"LyntMail.csv"}
             separator={","}
             style={{ color: "#fff", textDecoration: "none" }}
           >
@@ -74,7 +74,7 @@ function Campaigns({ subscribers, CSVData }) {
         </TableHeader>
         <Table>
           {subscribers.length === 0 ? (
-            <NotFound text="Your subscriber list is empty" />
+            <NotFound text="You do not have any leads yet " />
           ) : (
             subscribers.map((subscriber) => {
               return <Subscriber key={subscriber.sub_id} subs={subscriber} />;

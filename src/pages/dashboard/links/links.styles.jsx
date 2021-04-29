@@ -4,6 +4,7 @@ export const Container = styled.div`
   height: 80%;
   width: 100%;
   border-radius: 13px;
+  overflow: auto;
   background-color: #fff;
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
@@ -72,6 +73,12 @@ export const HeaderBlock = styled.div`
     width: 30%;
     @media screen and (max-width: 800px) {
       width: 35%;
+    }
+  }
+  &:nth-child(4) {
+    width: 10%;
+    @media screen and (max-width: 800px) {
+      width: 15%;
     }
   }
 `;

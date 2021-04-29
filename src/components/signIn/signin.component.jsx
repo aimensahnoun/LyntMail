@@ -28,7 +28,7 @@ function SignIn({ toggleForgotPassword, isForgotPassword, toggleIsLogin }) {
   const [isTooManyRequests, setManyRequests] = useState(false);
   return (
     <AuthenticationDecorationContent>
-      <SignInTitle>Sign in to Swipe Mail</SignInTitle>
+      <SignInTitle>Sign in to Lyntmail</SignInTitle>
       <Formik
         initialValues={{
           email: "",
@@ -74,7 +74,7 @@ function SignIn({ toggleForgotPassword, isForgotPassword, toggleIsLogin }) {
               value={values.email}
               onChange={handleChange}
               onBlur={handleBlur}
-              placeholder="Enter you email"
+              placeholder="Enter your email"
             >
               <AiOutlineMail />
             </CustomInputField>
@@ -84,7 +84,7 @@ function SignIn({ toggleForgotPassword, isForgotPassword, toggleIsLogin }) {
               value={values.password}
               onChange={handleChange}
               onBlur={handleBlur}
-              placeholder="Enter you password"
+              placeholder="Enter your password"
             >
               <Si1Password />
             </CustomInputField>

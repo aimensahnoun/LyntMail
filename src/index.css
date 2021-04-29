@@ -17,6 +17,9 @@
   src: local("Gilroy"), url(./fonts/Gilroy-Thin.ttf) format("truetype");
 }
 
+html {
+  scroll-behavior: smooth;
+}
 body {
   margin: 0;
   font-family: "Gilroy", sans-serif;

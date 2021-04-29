@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { connect } from "react-redux";
 
@@ -11,6 +11,7 @@ import {
   Title,
   NavigatorContainer,
   Pages,
+  PagesContainer,
   Buttons,
   SignInButton,
   SignUpButton,
@@ -20,10 +21,13 @@ function HomepageNavigation({ setIsLogin, historyVar, currentUser }) {
   return (
     <Page>
       <NavigatorContainer>
-        <Title>Swipe Mail</Title>
-        <Pages>About Us</Pages>
-        <Pages>Pricing</Pages>
-        <Pages>Contact</Pages>
+        <Title>Lyntmail</Title>
+        <PagesContainer>
+          <Pages href="#home">Home</Pages>
+          <Pages href="#steps">Steps</Pages>
+          <Pages href="#how-it-works">How It Works</Pages>
+          <Pages href="#pricing">Pricing</Pages>
+        </PagesContainer>
         {currentUser != null ? (
           <Buttons>
             <SignUpButton onClick={() => historyVar.push("/dashboard")}>

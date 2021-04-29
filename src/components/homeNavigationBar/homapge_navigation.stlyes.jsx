@@ -8,6 +8,9 @@ export const Page = styled.div`
   background-attachment: cover;
   background-position: center;
   color: #fff;
+  @media only screen and (max-width: 600px) {
+    margin-bottom: 10vh;
+  }
 `;
 
 export const Title = styled.h1`
@@ -21,15 +24,40 @@ export const Title = styled.h1`
 export const NavigatorContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin: 0 5rem;
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
-export const Pages = styled.h5`
+export const PagesContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  margin-left: auto;
+  cursor: pointer;
+  user-select: none;
+  @media only screen and (max-width: 600px) {
+    text-align: center;
+    margin-left: 0;
+  }
+`;
+
+export const Pages = styled.a`
   margin: 0 0.5rem;
+  color: black;
+  text-decoration: none;
 `;
 
 export const Buttons = styled.div`
   margin-left: auto;
+  @media only screen and (max-width: 600px) {
+    margin-top: 2vh;
+    margin-left: 0;
+  }
 `;
 
 export const SignInButton = styled.button`
@@ -38,7 +66,6 @@ export const SignInButton = styled.button`
   background-color: #fff;
   border-radius: 20px;
   border: none;
-
   font-weight: bold;
   color: #000;
   cursor: pointer;
@@ -58,4 +85,8 @@ export const SignUpButton = styled.button`
   -webkit-box-shadow: 0 0 5px 5px rgba(232, 95, 57, 0.3);
   -moz-box-shadow: 0 0 5px 5px rgba(232, 95, 57, 0.3);
   box-shadow: 0 0px 5px 5px rgba(232, 95, 57, 0.3);
+  @media only screen and (max-width: 600px) {
+    width: 5rem;
+    font-size: .75rem;
+  }
 `;

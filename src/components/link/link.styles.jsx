@@ -10,6 +10,13 @@ export const Container = styled.div`
   }
 `;
 
+export const Dot = styled.span`
+  height: .75rem;
+  width: .75rem;
+  border-radius: 50%;
+  display: inline-block;
+`;
+
 export const FieldBlock = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -32,6 +39,12 @@ export const FieldBlock = styled.div`
     color: #666;
     display: flex;
     align-items: center;
+  }
+  &:nth-child(4) {
+    width: 10%;
+    @media screen and (max-width: 800px) {
+      width: 15%;
+    }
   }
 `;
 

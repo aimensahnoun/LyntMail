@@ -24,7 +24,7 @@ function AuthenticationPage({ isLogin }) {
         }}
         style={{ cursor: "pointer" }}
       >
-        Swipe Mail
+        Lyntmail
       </Title>
       <PageContainer>
         <FormContainer isLogin={isLogin}>

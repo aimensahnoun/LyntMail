@@ -47,8 +47,8 @@ function Links({ toggleModal, links }) {
 
       <Container>
         <DescriptionParagraph>
-          Generate links that you can share with your followers to capture their
-          information.
+          Generate links that you can share with your followers and website
+          visitors to capture their information.
         </DescriptionParagraph>
         <TableHeader>
           <HeaderBlock>
@@ -59,6 +59,9 @@ function Links({ toggleModal, links }) {
           </HeaderBlock>
           <HeaderBlock>
             <span>Link</span>
+          </HeaderBlock>
+          <HeaderBlock>
+            <span>Status</span>
           </HeaderBlock>
           <HeaderBlock>
             <span>Actions</span>
@@ -73,8 +76,8 @@ function Links({ toggleModal, links }) {
         </Table>
         <DescriptionParagraph>
           <strong>
-            ** The number of MailChimp links that can be generated depends on
-            your MailChimp membership
+            ** The number of Mailchimp links that can be generated depends on
+            your Mailchimp membership
           </strong>
         </DescriptionParagraph>
       </Container>

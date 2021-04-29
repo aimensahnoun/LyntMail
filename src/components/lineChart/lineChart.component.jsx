@@ -70,7 +70,7 @@ class LineChart extends Component {
     return (
       <MainContainer>
         <TitleContainer>
-          <h6>Subscribers</h6>
+          <h6>Leads</h6>
 
           <DropDown setData={setData} type="Line" />
         </TitleContainer>

@@ -4,8 +4,9 @@ export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  height: 21rem;
-  width: 29rem;
+  height:60vh;
+  width:37vw;
+  overflow-y: auto;
   border-radius: 13px;
   padding: 0.4rem 1rem;
   margin: 2rem 0;
@@ -14,8 +15,8 @@ export const MainContainer = styled.div`
     0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.006),
     0 100px 80px rgba(0, 0, 0, 0.02);
   @media screen and (max-width: 800px) {
-    width: 93vw;
-    height: 15rem;
+    width: 96%;
+    height: 60vh;
     padding: 0.1rem 0.6rem;
   }
 `;
@@ -44,7 +45,7 @@ export const DateContainer = styled.div`
 `;
 
 export const LineContainer = styled.div`
-  margin-bottom: 20rem;
+  
   padding-bottom: 2rem;
   @media screen and (max-width: 800px) {
     margin-bottom: -20rem;

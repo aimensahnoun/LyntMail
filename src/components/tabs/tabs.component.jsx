@@ -25,7 +25,7 @@ function Tabs({ button, setButton, setCurrentUser, router }) {
         onClick={() => history.push("/")}
         style={{ color: "#E86F52", cursor: "pointer" }}
       >
-        Swipe Mail
+        Lyntmail
       </h3>
       <Tab isActive={button === 1 ? true : false} onClick={() => setButton(1)}>
         <IoIosSpeedometer style={{ marginRight: ".35rem" }} />

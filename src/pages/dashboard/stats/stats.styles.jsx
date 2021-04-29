@@ -5,7 +5,6 @@ export const StatBoxContainer = styled.div`
   margin-bottom: 1rem;
   width: 100%;
   justify-content: space-between;
-  
 `;
 
 export const TitleContainer = styled.div`
@@ -14,6 +13,9 @@ export const TitleContainer = styled.div`
 
 export const ChartContainer = styled.div`
   display: flex;
+  width: 100%;
   justify-content: space-between;
-  margin-top: -1rem;
+  @media screen and (max-width: 800px) {
+    display: block;
+  }
 `;

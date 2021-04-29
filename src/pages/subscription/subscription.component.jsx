@@ -20,6 +20,7 @@ class Subscription extends Component {
       done: false,
       apiKey: null,
       href: null,
+      isActive: null,
     };
   }
 
@@ -28,13 +29,14 @@ class Subscription extends Component {
   async componentDidMount() {
     const href = this.props.match.url.split("/")[1];
     const linkData = await getCampaignDetails(href);
-    if (linkData.length !== 0 && linkData !== undefined) {
+    if (linkData !== undefined && linkData.length !== 0 ) {
       const api_key = await getOwnerApiKey(linkData[0].owner_id);
       this.setState({
         linkData: linkData,
         linkFound: true,
         apiKey: api_key,
         href: href,
+        isActive: linkData[0].is_active,
       });
     }
 
@@ -74,11 +76,12 @@ class Subscription extends Component {
       done,
       apiKey,
       href,
+      isActive
     } = this.state;
 
     return (
       <PageContainer>
-        <Title>Swipe Mail</Title>
+        <Title>Lyntmail</Title>
         {isLoading ? (
           <LoaderContainer>
             <Loader type="Puff" color="#E86F52" height={100} width={100} />
@@ -95,6 +98,7 @@ class Subscription extends Component {
             setAlreadySubbed={this.setAlreadySubbedToTrue}
             apiKey={apiKey}
             href={href}
+            isActive ={isActive}
           />
         )}
       </PageContainer>

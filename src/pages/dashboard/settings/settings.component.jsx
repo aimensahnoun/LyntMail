@@ -22,10 +22,6 @@ function Settings({ user, isMobile }) {
   const [randomError, setRandomError] = useState(false);
   const [correct, setCorrect] = useState(false);
 
-  useEffect(() => {
-    console.log(isMobile());
-  });
-
   return (
     <PageContainer>
       <h2
@@ -77,9 +73,14 @@ function Settings({ user, isMobile }) {
               ),
           })}
           onSubmit={async (values, { setSubmitting }) => {
+            setCorrect(false);
+            setRandomError(false);
+            setWrongPassword(false);
+            setChangePassword(false);
+            setChangeEmail(false);
             const { name, email, apiKey, oldPassword, newPassword } = values;
             try {
-              if(apiKey !== user.user.api_key){
+              if (apiKey !== user.user.api_key || name != user.user.full_name) {
                 await updateUserData(email, apiKey, name);
               }
               if (email !== user.user.email) {
@@ -299,8 +300,7 @@ function Settings({ user, isMobile }) {
                 Changes done successfully{" "}
               </h5>
               <Button type="submit">
-                {" "}
-                {isSubmitting ? "Loading ..." : "Save"}
+                {isSubmitting ? "Saving ..." : "Save"}
               </Button>
             </Form>
           )}

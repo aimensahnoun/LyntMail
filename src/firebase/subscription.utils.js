@@ -11,7 +11,6 @@ var firebaseConfig = {
   appId: "1:250451597260:web:186276285e78987c97ef69",
   measurementId: "G-9KGXL5FYZK",
 };
-
 export var subFirebase = firebase.initializeApp(firebaseConfig, "SubApp");
 subFirebase.analytics();
 export const subAuth = subFirebase.auth();
@@ -27,6 +26,10 @@ export const signInWithGoogle = () => {
 var facebookProvider = new firebase.auth.FacebookAuthProvider();
 export const signInWithFacebook = () =>
   subAuth.signInWithPopup(facebookProvider);
+
+var twitterProvider = new firebase.auth.TwitterAuthProvider();
+export const signInWithTwitter = () => subAuth.signInWithPopup(twitterProvider);
+
 // Authenticate using Yahoo
 var yahooProvider = new firebase.auth.OAuthProvider("yahoo.com");
 export const signInWithYahoo = () => subAuth.signInWithPopup(yahooProvider);
@@ -38,7 +41,7 @@ export const signInWithGithub = () => subAuth.signInWithPopup(githubProvider);
 export async function getCampaignDetails(href) {
   let linkData;
   try {
-    await fetch("https://swipemail.herokuapp.com/getLink", {
+    await fetch("https://lyntmail.xyz/getLink", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -46,15 +49,13 @@ export async function getCampaignDetails(href) {
       }),
     }).then(async (data) => (linkData = await data.json()));
     return linkData;
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }
 
 export async function getOwnerApiKey(owner_id) {
   let apiKey;
   try {
-    await fetch("https://swipemail.herokuapp.com/getApiKey", {
+    await fetch("https://lyntmail.xyz/getApiKey", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -62,9 +63,7 @@ export async function getOwnerApiKey(owner_id) {
       }),
     }).then(async (data) => (apiKey = await data.json()));
     return apiKey;
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }
 
 const getUtcDate = () => {
@@ -80,7 +79,7 @@ const getUtcDate = () => {
 export async function handleSubscription(linkData, sub, apiKey, href) {
   try {
     let response;
-    await fetch("https://swipemail.herokuapp.com/addSub", {
+    await fetch("https://lyntmail.xyz/addSub", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -100,7 +99,5 @@ export async function handleSubscription(linkData, sub, apiKey, href) {
       .then((data) => (response = data));
 
     return response;
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }

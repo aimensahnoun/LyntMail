@@ -22,10 +22,10 @@ firebase.analytics();
 //Function to generate new user's data
 export const createUserProfileDocument = async (userAuth, fullName) => {
   const { email } = userAuth;
-  console.log()
+
   //Sending data to the NodeJS server
   try {
-    await fetch("https://swipemail.herokuapp.com/register", {
+    await fetch("https://lyntmail.xyz/register", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -35,22 +35,20 @@ export const createUserProfileDocument = async (userAuth, fullName) => {
         api_key: null,
         subscription: "Adopter",
         href: shortid.generate(),
-        quota: 10000,
+        quota: 1000,
         subscriber_count: 0,
       }),
     })
       // Receiving the users data
       .then((data) => data.json());
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 // Function to get user data from database
 export const getUserData = async (id) => {
   let userData;
   // Connecting to the database throught nodeJS server
   try {
-    await fetch("https://swipemail.herokuapp.com/getData", {
+    await fetch("https://lyntmail.xyz/getData", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -62,19 +60,17 @@ export const getUserData = async (id) => {
       .then((result) => (userData = result));
     // Returning the user data
     return userData;
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 // Function to Generate a new link
-export const generateNewLink = async (name, type) => {
+export const generateNewLink = async (name, type, count) => {
   // Generating a new href
   const shortHref = shortid.generate();
   var result = "";
   // Sending Data to the nodeJS server
   try {
-    await fetch("https://swipemail.herokuapp.com/newLink", {
+    await fetch("https://lyntmail.xyz/newLink", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -82,6 +78,7 @@ export const generateNewLink = async (name, type) => {
         owner_id: auth.currentUser.uid,
         href: shortHref,
         type: type,
+        is_active: count == 0 ? "false" : "true",
       }),
     })
       .then((data) => data.json())
@@ -89,18 +86,16 @@ export const generateNewLink = async (name, type) => {
     if (result.includes("already exists")) {
       return 1;
     }
-    console.log(result);
+
     const userData = await getUserData(auth.currentUser.uid);
     store.dispatch(setCurrentUser(userData));
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 // Functon to delete a link
 export const deleteLink = async (href, type, list_id, apiKey) => {
   try {
-    await fetch("https://swipemail.herokuapp.com/deleteLink", {
+    await fetch("https://lyntmail.xyz/deleteLink", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -112,13 +107,11 @@ export const deleteLink = async (href, type, list_id, apiKey) => {
     });
     const userData = await getUserData(auth.currentUser.uid);
     store.dispatch(setCurrentUser(userData));
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 export const deleteSubscriber = async (sub_id, subscribed_to) => {
   try {
-    await fetch("https://swipemail.herokuapp.com/deleteSubscriber", {
+    await fetch("https://lyntmail.xyz/deleteSubscriber", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -128,16 +121,14 @@ export const deleteSubscriber = async (sub_id, subscribed_to) => {
     });
     const userData = await getUserData(auth.currentUser.uid);
     store.dispatch(setCurrentUser(userData));
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
-export const createMailChimpLink = async (apiKey, name) => {
+export const createMailChimpLink = async (apiKey, name, count) => {
   const shortHref = shortid.generate();
   let response = "";
   try {
-    await fetch("https://swipemail.herokuapp.com/newMailchimpLink", {
+    await fetch("https://lyntmail.xyz/newMailchimpLink", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -145,20 +136,19 @@ export const createMailChimpLink = async (apiKey, name) => {
         name,
         owner_id: auth.currentUser.uid,
         href: shortHref,
+        is_active: count == 0 ? "false" : "true",
       }),
     }).then((data) => (response = data.json()));
 
     const userData = await getUserData(auth.currentUser.uid);
     store.dispatch(setCurrentUser(userData));
     return response;
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 export const updateUserData = async (email, apiKey, fullName) => {
   try {
-    await fetch("https://swipemail.herokuapp.com/updateData", {
+    await fetch("https://lyntmail.xyz/updateData", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -171,9 +161,29 @@ export const updateUserData = async (email, apiKey, fullName) => {
 
     const userData = await getUserData(auth.currentUser.uid);
     store.dispatch(setCurrentUser(userData));
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
+};
+
+export const toggleLink = async (href, quota, status) => {
+  let response = null;
+  try {
+    response = await fetch("https://lyntmail.xyz/toggleLink", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        href,
+        quota,
+        status,
+      }),
+    });
+
+    response = await response.json();
+    if(response === "Full quota"){
+      return false;
+    }
+    const userData = await getUserData(auth.currentUser.uid);
+    store.dispatch(setCurrentUser(userData));
+  } catch (error) {}
 };
 
 export const getPieChartData = (index, data) => {

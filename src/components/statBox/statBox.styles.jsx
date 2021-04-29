@@ -3,7 +3,7 @@ export const Container = styled.div`
   display: flex;
   background-color: #fff;
   height: 5rem;
-  width: 11rem;
+  min-width: 11rem;
   border-radius: 13px;
   padding: 0.4rem 1rem;
   align-items: center;

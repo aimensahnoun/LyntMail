@@ -82,7 +82,7 @@ function SignUp({
               onChange={handleChange}
               onBlur={handleBlur}
               type="text"
-              placeholder="Enter you name"
+              placeholder="Enter your name"
             >
               <CgProfile />
             </CustomInputField>
@@ -92,7 +92,7 @@ function SignUp({
               value={values.email}
               onChange={handleChange}
               onBlur={handleBlur}
-              placeholder="Enter you email"
+              placeholder="Enter your email"
             >
               <AiOutlineMail />
             </CustomInputField>
@@ -102,7 +102,7 @@ function SignUp({
               value={values.password}
               onChange={handleChange}
               onBlur={handleBlur}
-              placeholder="Enter you password"
+              placeholder="Enter your password"
             >
               <Si1Password />
             </CustomInputField>

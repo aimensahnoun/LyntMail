@@ -17,7 +17,7 @@ import { getPieChartData } from "../../firebase/firebase.utils";
 class DoughnutChart extends Component {
   constructor(props) {
     super(props);
-    this.state = { componentData: {}, length: 0,};
+    this.state = { componentData: {}, length: 0 };
   }
 
   setData = (labels, dataset) => {
@@ -77,7 +77,7 @@ class DoughnutChart extends Component {
     return (
       <MainContainer>
         <TitleContainer>
-          <h6>Subscribers by Category</h6>
+          <h6>Leads by Category</h6>
           <DropDown setData={setData} setLength={setLength} type="Pie" />
         </TitleContainer>
         <ChartContainer>
@@ -85,7 +85,8 @@ class DoughnutChart extends Component {
             <div
               style={{
                 display: "flex",
-                height: "75%",
+                height: "100%",
+                width:"100%",
                 justifyContent: "center",
                 alignItems: "center",
               }}

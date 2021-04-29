@@ -62,21 +62,29 @@ function LinkModal({
           setExist(false);
           const { campaignName, type } = values;
           let mailChimpResponse = "";
-          if (currentUser.user.api_key == null || currentUser.user.api_key == '' && type === "MailChimp") {
+          if (
+            (currentUser.user.api_key == null ||
+              currentUser.user.api_key == "") &&
+            type === "MailChimp"
+          ) {
             setError(true);
             return;
           } else if (type === "MailChimp") {
             mailChimpResponse = await createMailChimpLink(
               currentUser.user.api_key,
-              campaignName
+              campaignName,
+              currentUser.user.quota
             );
             if (mailChimpResponse === "Forbidden") {
               setLinkError(true);
               return;
             }
           } else {
-            var result = await generateNewLink(campaignName, type);
-            console.log(result)
+            var result = await generateNewLink(
+              campaignName,
+              type,
+              currentUser.user.quota
+            );
             if (result === 1) {
               setExist(true);
               return;
@@ -127,7 +135,7 @@ function LinkModal({
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <Type>
                     <SiMailDotRu style={{ color: "#666666" }} />
-                    <Tooltip title="Swipe Mail">
+                    <Tooltip title="Lyntmail">
                       <Radio
                         name="type"
                         checked={type === 1}
@@ -143,7 +151,7 @@ function LinkModal({
                 </div>
                 <Type>
                   <SiMailchimp style={{ color: "#666666" }} />
-                  <Tooltip title="MailChimp">
+                  <Tooltip title="Mailchimp">
                     <Radio
                       name="type"
                       checked={type === 2}
@@ -163,7 +171,7 @@ function LinkModal({
                   color: "#DC3545",
                 }}
               >
-                Please add MailChimp Api key before creating a MailChimp link
+                Please add Mailchimp Api key before creating a Mailchimp link
               </h5>
               <h5
                 style={{
@@ -171,7 +179,7 @@ function LinkModal({
                   color: "#DC3545",
                 }}
               >
-                You cannot add more MailChimp links, Please check your MailChimp
+                You cannot add more Mailchimp links, Please check your Mailchimp
                 subscription
               </h5>
               <h5

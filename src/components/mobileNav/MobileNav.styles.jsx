@@ -25,7 +25,12 @@ function toggleButton({ isOpen }) {
 function increaseSize({ isOpen }) {
   if (isOpen) {
     return css`
-      font-size: 1.8rem;
+      font-size: 3.5vh;
+    `;
+  } else {
+    return css`
+      color: transparent;
+      font-size: 0;
     `;
   }
 }
@@ -74,7 +79,6 @@ export const ItemsDiv = styled.div`
 export const Item = styled.h3`
   transition: all 0.75s ease;
   margin-bottom: -1rem;
-  font-size: 0;
+  cursor: pointer;
   ${increaseSize}
-
 `;
