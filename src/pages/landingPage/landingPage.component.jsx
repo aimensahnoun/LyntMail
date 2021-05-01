@@ -236,12 +236,11 @@ function LandingPage({ history, currentUser, setIsLogin }) {
           <h3 style={{ fontSize: "1.5rem" }}>
             Find a plan that's right for you
           </h3>
-          {/* <h3 style={{ marginTop: "-1.5rem", color: "#B4B7C1" }}>
-            For Beta users, they will only get 1000 subscribers quota with
-            unlimited links
-          </h3> */}
+          <h3 style={{ marginTop: "-1.5rem", color: "#B4B7C1" }}>
+            For Beta testing period, only the Beta package will be available
+          </h3>
           <PriceContainer
-            style={{ alignItems: "center", justifyContent: "center" }}
+            style={{ alignItems: "center" }}
           >
             <PriceTable>
               <h5>Beta Package</h5>
@@ -253,7 +252,7 @@ function LandingPage({ history, currentUser, setIsLogin }) {
                 <AiFillCheckCircle
                   style={{ color: "#6BD570", marginRight: "1vw" }}
                 />
-                <h6>1000 subscribers</h6>
+                <h6>1,000 leads</h6>
               </Feature>
               <Feature style={{ marginBottom: "-2.5rem" }}>
                 <AiFillCheckCircle
@@ -265,7 +264,7 @@ function LandingPage({ history, currentUser, setIsLogin }) {
                 <AiFillCheckCircle
                   style={{ color: "#6BD570", marginRight: "1vw" }}
                 />
-                <h6>Export subscribers as CSV</h6>
+                <h6>Export leads as CSV</h6>
               </Feature>
               <Feature>
                 <AiFillCheckCircle
@@ -275,69 +274,73 @@ function LandingPage({ history, currentUser, setIsLogin }) {
               </Feature>
             </PriceTable>
 
-            {/* <PriceTable>
-              <h5>Standard Package</h5>
-              <Divider />
-              <h4>$10/Month</h4>
-              <Divider />
+            {
+              <PriceTable>
+                <h5>Pro Package</h5>
+                <Divider />
+                <h4>$9.99/Month</h4>
+                <Divider />
 
-              <Feature style={{ marginBottom: "-2.5rem" }}>
-                <AiFillCheckCircle
-                  style={{ color: "#6BD570", marginRight: "1vw" }}
-                />
-                <h6>10,000 monthly subscribers</h6>
-              </Feature>
-              <Feature style={{ marginBottom: "-2.5rem" }}>
-                <AiFillCheckCircle
-                  style={{ color: "#6BD570", marginRight: "1vw" }}
-                />
-                <h6>5 Lyntmail links</h6>
-              </Feature>
-              <Feature style={{ marginBottom: "-2.5rem" }}>
-                <AiFillCheckCircle
-                  style={{ color: "#6BD570", marginRight: "1vw" }}
-                />
-                <h6>2 Mailchimp links</h6>
-              </Feature>
-              <Feature>
-                <AiFillCheckCircle
-                  style={{ color: "#6BD570", marginRight: "1vw" }}
-                />
-                <h6>Export subscribers to CSV</h6>
-              </Feature>
-            </PriceTable> */}
+                <Feature style={{ marginBottom: "-2.5rem" }}>
+                  <AiFillCheckCircle
+                    style={{ color: "#6BD570", marginRight: "1vw" }}
+                  />
+                  <h6>5,000 monthly leads</h6>
+                </Feature>
+                <Feature style={{ marginBottom: "-2.5rem" }}>
+                  <AiFillCheckCircle
+                    style={{ color: "#6BD570", marginRight: "1vw" }}
+                  />
+                  <h6>Unlimited Lyntmail links</h6>
+                </Feature>
+                <Feature style={{ marginBottom: "-2.5rem" }}>
+                  <AiFillCheckCircle
+                    style={{ color: "#6BD570", marginRight: "1vw" }}
+                  />
+                  <h6>Unlimited Mailchimp links</h6>
+                </Feature>
+                <Feature>
+                  <AiFillCheckCircle
+                    style={{ color: "#6BD570", marginRight: "1vw" }}
+                  />
+                  <h6>Export leads to CSV</h6>
+                </Feature>
+              </PriceTable>
+            }
 
-            {/* <PriceTable>
-              <h5>Pro Package</h5>
-              <Divider />
-              <h4>$15/Month</h4>
-              <Divider />
+            {
+              <PriceTable>
+                <h5>Pro Package</h5>
+                <Divider />
+                <h4>$14.99/Month</h4>
+                <Divider />
 
-              <Feature style={{ marginBottom: "-2.5rem" }}>
-                <AiFillCheckCircle
-                  style={{ color: "#6BD570", marginRight: "1vw" }}
-                />
-                <h6>20,000 monthly subscribers</h6>
-              </Feature>
-              <Feature style={{ marginBottom: "-2.5rem" }}>
-                <AiFillCheckCircle
-                  style={{ color: "#6BD570", marginRight: "1vw" }}
-                />
-                <h6>8 Lyntmail links</h6>
-              </Feature>
-              <Feature style={{ marginBottom: "-2.5rem" }}>
-                <AiFillCheckCircle
-                  style={{ color: "#6BD570", marginRight: "1vw" }}
-                />
-                <h6>5 Mailchimp links</h6>
-              </Feature>
-              <Feature>
-                <AiFillCheckCircle
-                  style={{ color: "#6BD570", marginRight: "1vw" }}
-                />
-                <h6>Export subscribers to CSV</h6>
-              </Feature>
-            </PriceTable> */}
+                <Feature style={{ marginBottom: "-2.5rem" }}>
+                  <AiFillCheckCircle
+                    style={{ color: "#6BD570", marginRight: "1vw" }}
+                  />
+                  <h6>15,000 monthly leads</h6>
+                </Feature>
+                <Feature style={{ marginBottom: "-2.5rem" }}>
+                  <AiFillCheckCircle
+                    style={{ color: "#6BD570", marginRight: "1vw" }}
+                  />
+                  <h6>Unlimited Lyntmail links</h6>
+                </Feature>
+                <Feature style={{ marginBottom: "-2.5rem" }}>
+                  <AiFillCheckCircle
+                    style={{ color: "#6BD570", marginRight: "1vw" }}
+                  />
+                  <h6>Unlimited Mailchimp links</h6>
+                </Feature>
+                <Feature>
+                  <AiFillCheckCircle
+                    style={{ color: "#6BD570", marginRight: "1vw" }}
+                  />
+                  <h6>Export leads to CSV</h6>
+                </Feature>
+              </PriceTable>
+            }
           </PriceContainer>
         </VerticalFlex>
       </PricingContainer>
@@ -384,7 +387,7 @@ function LandingPage({ history, currentUser, setIsLogin }) {
                 window.open("https://twitter.com/lyntlabs", "_blank")
               }
             />
-            <div style={{ position: "absolute", right: "3vw" }}>
+            {/* <div style={{ position: "absolute", right: "3vw" }}>
               <div
                 style={{
                   display: "flex",
@@ -396,7 +399,7 @@ function LandingPage({ history, currentUser, setIsLogin }) {
                 <HiTranslate style={{ color: "white", marginRight: ".25vw" }} />
                 <h4 style={{ color: "white" }}>Turkish</h4>
               </div>
-            </div>
+            </div> */}
           </StepContainer>
 
           <StepContainer style={{ justifyContent: "center", width: "100vw" }}>
