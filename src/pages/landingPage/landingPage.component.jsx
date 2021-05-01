@@ -264,13 +264,13 @@ function LandingPage({ history, currentUser, setIsLogin }) {
                 <AiFillCheckCircle
                   style={{ color: "#6BD570", marginRight: "1vw" }}
                 />
-                <h6>Export leads as CSV</h6>
+                <h6>Unlimited Mailchimp links</h6>
               </Feature>
               <Feature>
                 <AiFillCheckCircle
                   style={{ color: "#6BD570", marginRight: "1vw" }}
                 />
-                <h6>Unlimited Mailchimp links</h6>
+                <h6>Export leads to CSV</h6>
               </Feature>
             </PriceTable>
 
@@ -310,7 +310,7 @@ function LandingPage({ history, currentUser, setIsLogin }) {
 
             {
               <PriceTable>
-                <h5>Pro Package</h5>
+                <h5>Premium Package</h5>
                 <Divider />
                 <h4>$14.99/Month</h4>
                 <Divider />
