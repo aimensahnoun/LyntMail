@@ -76,12 +76,14 @@ const getUtcDate = () => {
 };
 
 //Save subscriber data to database or MailChimp
-export async function handleSubscription(linkData, sub, apiKey, href) {
+export async function handleSubscription(linkData, sub, href) {
   try {
     let response;
     await fetch("https://lyntmail.xyz/addSub", {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         campaign_name: linkData[0].campaign_name,
         email: sub.email,
@@ -92,7 +94,6 @@ export async function handleSubscription(linkData, sub, apiKey, href) {
         list_id: linkData[0].list_id,
         type: linkData[0].campaign_type,
         date: getUtcDate(),
-        apiKey,
       }),
     })
       .then((data) => data.json())

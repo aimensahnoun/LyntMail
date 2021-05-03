@@ -14,13 +14,19 @@ import { Si1Password } from "react-icons/si";
 import { BiKey } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 import CustomInputField from "../../../components/customTextField/customTextField.component";
-import { auth, updateUserData } from "../../../firebase/firebase.utils";
+import {
+  auth,
+  confirmApiKey,
+  updateUserData,
+} from "../../../firebase/firebase.utils";
 function Settings({ user, isMobile }) {
   const [changeEmail, setChangeEmail] = useState(false);
   const [changePassword, setChangePassword] = useState(false);
   const [wrongPassword, setWrongPassword] = useState(false);
   const [randomError, setRandomError] = useState(false);
   const [correct, setCorrect] = useState(false);
+  const [missingApiKey, setMissingApiKey] = useState(false);
+  const [invalidApi, setInValidApi] = useState(false);
 
   return (
     <PageContainer>
@@ -78,9 +84,25 @@ function Settings({ user, isMobile }) {
             setWrongPassword(false);
             setChangePassword(false);
             setChangeEmail(false);
+            setMissingApiKey(false);
+            setInValidApi(false);
             const { name, email, apiKey, oldPassword, newPassword } = values;
             try {
               if (apiKey !== user.user.api_key || name != user.user.full_name) {
+                if (apiKey !== user.user.api_key) {
+                  if (["", null, undefined].includes(apiKey)) {
+                    for (let i = 0; i < user.links.length; i++) {
+                      if (
+                        user.links[i].campaign_type === "MailChimp" &&
+                        user.links[i].is_active === true
+                      )
+                        return setMissingApiKey(true);
+                    }
+                  } else {
+                    const result = await confirmApiKey(apiKey);
+                    if (result == false) return setInValidApi(true);
+                  }
+                }
                 await updateUserData(email, apiKey, name);
               }
               if (email !== user.user.email) {
@@ -254,6 +276,25 @@ function Settings({ user, isMobile }) {
                   </CustomInputField>
                 </Vertical>
               </APIContainer>
+              <h5
+                style={{
+                  display: invalidApi ? "block" : "none",
+                  color: "#DC3545",
+                  marginBottom: "-2rem",
+                }}
+              >
+                Invalid Mailchimp Api{" "}
+              </h5>
+              <h5
+                style={{
+                  display: missingApiKey ? "block" : "none",
+                  color: "#DC3545",
+                  marginBottom: "-2rem",
+                }}
+              >
+                You cannot delete api key while having an active mailchimp
+                campaing{" "}
+              </h5>
               <h5
                 style={{
                   display: changeEmail ? "block" : "none",

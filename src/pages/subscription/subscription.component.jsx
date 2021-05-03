@@ -2,11 +2,7 @@ import React, { Component } from "react";
 import Loader from "react-loader-spinner";
 import { PageContainer, Title, LoaderContainer } from "./subscription.styles";
 import SubscribeField from "../../components/subscriptionComponent/subscriptionField.component";
-import {
-  subAuth,
-  getCampaignDetails,
-  getOwnerApiKey,
-} from "../../firebase/subscription.utils";
+import { subAuth, getCampaignDetails } from "../../firebase/subscription.utils";
 class Subscription extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +14,6 @@ class Subscription extends Component {
       linkData: null,
       alreadySubbed: false,
       done: false,
-      apiKey: null,
       href: null,
       isActive: null,
     };
@@ -29,12 +24,10 @@ class Subscription extends Component {
   async componentDidMount() {
     const href = this.props.match.url.split("/")[1];
     const linkData = await getCampaignDetails(href);
-    if (linkData !== undefined && linkData.length !== 0 ) {
-      const api_key = await getOwnerApiKey(linkData[0].owner_id);
+    if (linkData !== undefined && linkData.length !== 0) {
       this.setState({
         linkData: linkData,
         linkFound: true,
-        apiKey: api_key,
         href: href,
         isActive: linkData[0].is_active,
       });
@@ -74,9 +67,8 @@ class Subscription extends Component {
       linkData,
       alreadySubbed,
       done,
-      apiKey,
       href,
-      isActive
+      isActive,
     } = this.state;
 
     return (
@@ -96,9 +88,8 @@ class Subscription extends Component {
             done={done}
             setDone={this.setSuccessToTrue}
             setAlreadySubbed={this.setAlreadySubbedToTrue}
-            apiKey={apiKey}
             href={href}
-            isActive ={isActive}
+            isActive={isActive}
           />
         )}
       </PageContainer>

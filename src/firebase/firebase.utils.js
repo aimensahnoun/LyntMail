@@ -5,6 +5,7 @@ import "firebase/analytics";
 import shortid from "shortid";
 import { store } from "../redux/store";
 import { setCurrentUser } from "../redux/user/user.actions";
+import Cookies from "js-cookie";
 
 const config = {
   apiKey: "AIzaSyB1QDGVCToTc-ALo7fcPKt7bYpdj_v6Bp0",
@@ -45,22 +46,33 @@ export const createUserProfileDocument = async (userAuth, fullName) => {
 };
 // Function to get user data from database
 export const getUserData = async (id) => {
-  let userData;
-  // Connecting to the database throught nodeJS server
-  try {
-    await fetch("https://lyntmail.xyz/getData", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        id: id,
-      }),
-    })
-      // Getting the data
-      .then((data) => data.json())
-      .then((result) => (userData = result));
-    // Returning the user data
-    return userData;
-  } catch (error) {}
+  if (auth.currentUser) {
+    let userData;
+    // Connecting to the database throught nodeJS server
+    try {
+      await fetch("https://lyntmail.xyz/getData", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id: id,
+        }),
+      })
+        // Getting the data
+        .then((data) => {
+          return data.json();
+        })
+        .then((result) => {
+          localStorage.setItem("token", result.token);
+          return (userData = result.userData);
+        });
+      // Returning the user data
+
+      setTimeout(() => {
+        getUserData(auth.currentUser.uid);
+      }, 270000);
+      return userData;
+    } catch (error) {}
+  }
 };
 
 // Function to Generate a new link
@@ -70,9 +82,13 @@ export const generateNewLink = async (name, type, count) => {
   var result = "";
   // Sending Data to the nodeJS server
   try {
+    const token = localStorage.getItem("token");
     await fetch("https://lyntmail.xyz/newLink", {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
         name: name,
         owner_id: auth.currentUser.uid,
@@ -93,16 +109,18 @@ export const generateNewLink = async (name, type, count) => {
 };
 
 // Functon to delete a link
-export const deleteLink = async (href, type, list_id, apiKey) => {
+export const deleteLink = async (href, userId) => {
   try {
+    const token = localStorage.getItem("token");
     await fetch("https://lyntmail.xyz/deleteLink", {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
         href,
-        type,
-        list_id,
-        apiKey,
+        userId,
       }),
     });
     const userData = await getUserData(auth.currentUser.uid);
@@ -111,12 +129,16 @@ export const deleteLink = async (href, type, list_id, apiKey) => {
 };
 export const deleteSubscriber = async (sub_id, subscribed_to) => {
   try {
+    const token = localStorage.getItem("token");
     await fetch("https://lyntmail.xyz/deleteSubscriber", {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
         sub_id,
-        subscribed_to,
+        userId: subscribed_to,
       }),
     });
     const userData = await getUserData(auth.currentUser.uid);
@@ -128,9 +150,13 @@ export const createMailChimpLink = async (apiKey, name, count) => {
   const shortHref = shortid.generate();
   let response = "";
   try {
+    const token = localStorage.getItem("token");
     await fetch("https://lyntmail.xyz/newMailchimpLink", {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
         apiKey,
         name,
@@ -148,9 +174,13 @@ export const createMailChimpLink = async (apiKey, name, count) => {
 
 export const updateUserData = async (email, apiKey, fullName) => {
   try {
+    const token = localStorage.getItem("token");
     await fetch("https://lyntmail.xyz/updateData", {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
         userId: auth.currentUser.uid,
         email,
@@ -167,18 +197,48 @@ export const updateUserData = async (email, apiKey, fullName) => {
 export const toggleLink = async (href, quota, status) => {
   let response = null;
   try {
+    const token = localStorage.getItem("token");
     response = await fetch("https://lyntmail.xyz/toggleLink", {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
+        userId: auth.currentUser.uid,
         href,
-        quota,
         status,
       }),
     });
 
     response = await response.json();
-    if(response === "Full quota"){
+    if (response === "Full quota") {
+      return false;
+    }
+    const userData = await getUserData(auth.currentUser.uid);
+    store.dispatch(setCurrentUser(userData));
+  } catch (error) {}
+};
+
+export const confirmApiKey = async (apiKey) => {
+  let response = null;
+  try {
+    const token = localStorage.getItem("token");
+    response = await fetch("https://lyntmail.xyz/confirmApiKey", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        userId: auth.currentUser.uid,
+        apiKey,
+      }),
+    });
+
+    response = await response.json();
+
+    if (response === "invalid") {
       return false;
     }
     const userData = await getUserData(auth.currentUser.uid);

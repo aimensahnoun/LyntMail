@@ -29,7 +29,6 @@ function SubscribeField({
   done,
   setDone,
   setAlreadySubbed,
-  apiKey,
   href,
   isActive,
 }) {
@@ -73,7 +72,7 @@ function SubscribeField({
         </h6>
         <Button
           onClick={async () => {
-            const res = await handleSubscription(linkData, sub, apiKey, href);
+            const res = await handleSubscription(linkData, sub, href);
             if (res === "Done") {
               setDone();
             } else if (res.includes("already exists")) {
@@ -106,7 +105,7 @@ function SubscribeField({
         >
           <GrTwitter />
         </SocialButton> */}
-        
+
         <SocialButton
           color="#4064AC"
           tooltip="Facebook"

@@ -22,7 +22,8 @@ function Alert(props) {
 function Link({ linkData, currentUser }) {
   const [isCopied, changeCopied] = useState(false);
   const [isError, changeError] = useState(false);
-  const [isModalOpen , changeModal] = useState(false);
+  const [isApiMissing, changeApiMissing] = useState(false);
+  const [isModalOpen, changeModal] = useState(false);
   return (
     <Container>
       <FieldBlock>
@@ -70,6 +71,14 @@ function Link({ linkData, currentUser }) {
         <Tooltip
           title={linkData.is_active ? "Deactivate" : "Activate"}
           onClick={async () => {
+            if (currentUser.user.quota == 0) return changeError(true);
+
+            if (
+              ["", null, undefined].includes(currentUser.user.api_key) &&
+              linkData.is_active == false
+            )
+              return changeApiMissing(true);
+
             const result = await toggleLink(
               linkData.href,
               currentUser.user.quota,
@@ -88,7 +97,7 @@ function Link({ linkData, currentUser }) {
             )}
           </LinkButton>
         </Tooltip>
-{/* 
+        {/* 
         <Tooltip title="Customize" onClick={() => alert("Hola")}>
           <LinkButton>
             <BiCustomize style={{ color: "#000" }} />{" "}
@@ -99,12 +108,7 @@ function Link({ linkData, currentUser }) {
           <LinkButton
             isDelete
             onClick={() => {
-              deleteLink(
-                linkData.href,
-                linkData.campaign_type,
-                linkData.list_id,
-                currentUser.user.api_key
-              );
+              deleteLink(linkData.href, linkData.owner_id);
             }}
           >
             <AiOutlineDelete style={{ color: "#fff" }} />{" "}
@@ -129,6 +133,15 @@ function Link({ linkData, currentUser }) {
       >
         <Alert onClose={() => changeError(false)} severity="error">
           You cannot activate a link on full quota!
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={isApiMissing}
+        autoHideDuration={2000}
+        onClose={() => changeApiMissing(false)}
+      >
+        <Alert onClose={() => changeError(false)} severity="error">
+          You cannot activate Mailchimp link without api key.
         </Alert>
       </Snackbar>
     </Container>
