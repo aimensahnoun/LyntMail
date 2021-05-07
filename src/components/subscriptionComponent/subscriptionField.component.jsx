@@ -19,6 +19,7 @@ import {
   signInWithGithub,
   handleSubscription,
   signInWithTwitter,
+  signInWithMicroSoft,
 } from "../../firebase/subscription.utils";
 function SubscribeField({
   loggedIn,
@@ -101,7 +102,7 @@ function SubscribeField({
         {/* <SocialButton
           color="#34D1F7"
           tooltip="Twitter"
-          onClick={signInWithTwitter}
+          onClick={signInWithMicroSoft}
         >
           <GrTwitter />
         </SocialButton> */}

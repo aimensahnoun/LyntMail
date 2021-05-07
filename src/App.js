@@ -12,6 +12,11 @@ import { selectCurrentUser } from "./redux/user/user.selector";
 
 import { auth, getUserData } from "./firebase/firebase.utils.js";
 import Subscription from "./pages/subscription/subscription.component";
+import Term from "./legal/terms";
+import Privacy from "./legal/privacy";
+import Use from "./legal/use";
+import Cookie from "./legal/cookie.jsx";
+import Iyzico from "./legal/iyzico";
 
 class App extends Component {
   unsubscribeFromAuth = null;
@@ -56,6 +61,11 @@ class App extends Component {
               )
             }
           />
+          <Route exact path="/iyzico" component={Iyzico} />
+          <Route exact path="/terms-of-service" component={Term} />
+          <Route exact path="/privacy-policy" component={Privacy} />
+          <Route exact path="/cookie-policy" component={Cookie} />
+          <Route exact path="/acceptable-use-policy" component={Use} />
           <Route exact path="/:href" component={Subscription} />
         </Switch>
       </div>

@@ -114,6 +114,30 @@ function SignUp({
             >
               A user with this email already exists
             </h5>
+            <h5 style={{ marginTop: "-.1rem" }}>
+              By clicking Sign Up, you agree to our{" "}
+              <span>
+                <a href="/terms-of-service" target="_blank">
+                  Terms,&nbsp;
+                </a>
+              </span>
+              <span>
+                <a href="/privacy-policy" target="_blank">
+                  Privacy Policy,&nbsp;
+                  <br />
+                </a>
+              </span>
+              <span>
+                <a href="/cookie-policy" target="_blank">
+                  Cookie Policy, &nbsp;
+                </a>
+              </span>
+              <span>
+                <a href="/acceptable-use-policy" target="_blank">
+                  and Acceptable Use Policy
+                </a>
+              </span>
+            </h5>
             <SignInCustomButton type="submit">
               {isSubmitting ? "Loading..." : "Sign Up"}
             </SignInCustomButton>

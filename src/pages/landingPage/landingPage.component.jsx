@@ -14,6 +14,7 @@ import { setIsLogin } from "../../redux/general/general.actions";
 import { selectCurrentUser } from "../../redux/user/user.selector";
 
 import { createStructuredSelector } from "reselect";
+import IyzicoLogo from "../../legal/iyzico.svg";
 
 import {
   MainHeroContainer,
@@ -49,6 +50,7 @@ import link from "./link.svg";
 import social from "./social.svg";
 import mailchimp from "./mailchimp.svg";
 import future from "./future.svg";
+import { FaCcVisa, FaCcMastercard } from "react-icons/fa";
 
 const howItWorks = {
   link: {
@@ -239,9 +241,7 @@ function LandingPage({ history, currentUser, setIsLogin }) {
           <h3 style={{ marginTop: "-1.5rem", color: "#B4B7C1" }}>
             For Beta testing period, only the Beta package will be available
           </h3>
-          <PriceContainer
-            style={{ alignItems: "center" }}
-          >
+          <PriceContainer style={{ alignItems: "center" }}>
             <PriceTable>
               <h5>Beta Package</h5>
               <Divider />
@@ -305,6 +305,40 @@ function LandingPage({ history, currentUser, setIsLogin }) {
                   />
                   <h6>Export leads to CSV</h6>
                 </Feature>
+                <div
+                  style={{
+                    // minWidth: "18vw",
+                    // maxWidth: "18vw",
+
+                    maxHeight: "1rem",
+                    backgroundColor: "#fff",
+                    border: "1px solid #000",
+                    borderRadius: "10px",
+                    padding: "1rem",
+
+                    display: "flex",
+                    // alignItems: "center",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    cursor: "pointer",
+                  }}
+                >
+                  <h5
+                    style={{
+                      fontSize: "1rem",
+                      textAlign: "center",
+                      alignSelf: "center",
+                      marginLeft: "auto",
+                    }}
+                  >
+                    Pay with Iyzico
+                  </h5>
+                  <img
+                    src={IyzicoLogo}
+                    height="15rem"
+                    style={{ marginLeft: "auto" }}
+                  />
+                </div>
               </PriceTable>
             }
 
@@ -339,18 +373,49 @@ function LandingPage({ history, currentUser, setIsLogin }) {
                   />
                   <h6>Export leads to CSV</h6>
                 </Feature>
+
+                <div
+                  style={{
+                    // minWidth: "18vw",
+                    // maxWidth: "18vw",
+
+                    maxHeight: "1rem",
+                    backgroundColor: "#fff",
+                    border: "1px solid #000",
+                    borderRadius: "10px",
+                    padding: "1rem",
+
+                    display: "flex",
+                    // alignItems: "center",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    cursor: "pointer",
+                  }}
+                >
+                  <h5
+                    style={{
+                      fontSize: "1rem",
+                      textAlign: "center",
+                      alignSelf: "center",
+                      marginLeft: "auto",
+                    }}
+                  >
+                    Pay with Iyzico
+                  </h5>
+                  <img
+                    src={IyzicoLogo}
+                    height="15rem"
+                    style={{ marginLeft: "auto" }}
+                  />
+                </div>
               </PriceTable>
             }
           </PriceContainer>
         </VerticalFlex>
       </PricingContainer>
 
-      <Footer>
-        <VerticalFlex
-          style={{
-            marginBottom: "-2rem",
-          }}
-        >
+      <Footer style={{ position: "relative" }}>
+        <VerticalFlex style={{ marginTop: "1.5rem" }}>
           <StepContainer
             style={{
               justifyContent: "center",
@@ -459,6 +524,89 @@ function LandingPage({ history, currentUser, setIsLogin }) {
               href="mailto: support@lyntmail.com"
             >
               support@lyntmail.com
+            </a>
+          </StepContainer>
+          <div
+            style={{
+              display: "flex",
+              minWidth: "18vw",
+              maxWidth: "18vw",
+              marginTop: ".4rem",
+              marginBottom: "1rem",
+              justifyContent: "center",
+              marginBottom: "-.9rem",
+            }}
+          >
+            <FaCcVisa
+              style={{
+                fontSize: "1.5rem",
+                marginRight: "1rem",
+                color: "#262559",
+              }}
+            />
+            <FaCcMastercard
+              style={{
+                fontSize: "1.5rem",
+                marginRight: "1rem",
+                color: "#E4001B",
+              }}
+            />
+          </div>
+
+          <StepContainer
+            style={{
+              justifyContent: "center",
+              width: "100vw",
+              marginTop: "2vh",
+            }}
+          >
+            <a
+              style={{
+                textDecoration: "none",
+                color: "#fff",
+                fontSize: ".8rem",
+                cursor: "pointer",
+              }}
+              target="_blank"
+              href="/terms-of-service"
+            >
+              Terms of Service -
+            </a>
+            <a
+              style={{
+                textDecoration: "none",
+                color: "#fff",
+                fontSize: ".8rem",
+                cursor: "pointer",
+              }}
+              target="_blank"
+              href="/privacy-policy"
+            >
+              Privacy Policy -
+            </a>
+            <a
+              style={{
+                textDecoration: "none",
+                color: "#fff",
+                fontSize: ".8rem",
+                cursor: "pointer",
+              }}
+              target="_blank"
+              href="/cookie-policy"
+            >
+              Cookie Policy -
+            </a>
+            <a
+              style={{
+                textDecoration: "none",
+                color: "#fff",
+                fontSize: ".8rem",
+                cursor: "pointer",
+              }}
+              target="_blank"
+              href="/acceptable-use-policy"
+            >
+              Acceptable Use Policy
             </a>
           </StepContainer>
           <h6 style={{ color: "white" }}>&copy; 2021 Lyntlabs</h6>

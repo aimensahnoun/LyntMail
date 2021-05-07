@@ -37,6 +37,9 @@ export const signInWithYahoo = () => subAuth.signInWithPopup(yahooProvider);
 var githubProvider = new firebase.auth.GithubAuthProvider();
 export const signInWithGithub = () => subAuth.signInWithPopup(githubProvider);
 
+var Microsoftprovider = new firebase.auth.OAuthProvider('microsoft.com');
+export const signInWithMicroSoft = () => subAuth.signInWithPopup(Microsoftprovider);
+
 // Getting the campaign details from link
 export async function getCampaignDetails(href) {
   let linkData;
