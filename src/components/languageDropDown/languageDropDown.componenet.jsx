@@ -15,9 +15,7 @@ const DropdownExampleSearchDropdown = () => (
     icon="world"
     options={languageOptions}
     search
-    onChange={() => {
-      console.log(this);
-    }}
+    onChange={() => {}}
     text="Select Language"
   />
 );

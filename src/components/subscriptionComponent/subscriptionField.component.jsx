@@ -32,7 +32,14 @@ function SubscribeField({
   setAlreadySubbed,
   href,
   isActive,
+  customBrand,
 }) {
+  if (
+    done &&
+    (customBrand.redirectURL != "" || customBrand.redirectURL != undefined)
+  ) {
+    window.open(customBrand.redirectURL, "_blank");
+  }
   return alreadySubbed ? (
     <Container style={{ display: "flex", alignItems: "center" }}>
       <Result style={{ color: "#DC3545" }}>
@@ -47,9 +54,18 @@ function SubscribeField({
         justifyContent: "center",
       }}
     >
-      <Result style={{ color: "#28A745", textAlign: "center" }}>
-        Thank you! You may close this page
-      </Result>
+      {customBrand ? (
+        <div>
+          <Result style={{ color: "#28A745", textAlign: "center" }}>
+            {customBrand.title}
+          </Result>
+          <p>{customBrand.message}</p>
+        </div>
+      ) : (
+        <Result style={{ color: "#28A745", textAlign: "center" }}>
+          Thank you! You may close this page
+        </Result>
+      )}
     </Container>
   ) : !linkFound || !isActive ? (
     <Container style={{ display: "flex", alignItems: "center" }}>

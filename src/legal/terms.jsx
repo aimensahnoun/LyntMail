@@ -2,7 +2,7 @@ import React from "react";
 
 function Terms() {
   return (
-    <div style={{ padding: "1rem" }} >
+    <div style={{ padding: "1rem" }}>
       <h2>Terms of Service</h2>
       <p>
         These Terms of Service govern your use of the website located at{" "}
@@ -144,6 +144,14 @@ function Terms() {
         These Terms of Service are governed by and construed in accordance with
         the laws of Turkey. You irrevocably submit to the exclusive jurisdiction
         of the courts in that State or location.{" "}
+      </p>
+      <h3>Refund Policy</h3>
+      <p>
+        We do offer a 30-day money-back guarantee for both lifetime and yearly
+        purchases. In the case of monthly purchases, we offer a 14-day
+        money-back guarantee for the first month of subscription. Can you please
+        add the refund policy section to our terms of services agreement when
+        you are going to add it to the website
       </p>
     </div>
   );

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   height: 80%;
@@ -96,4 +96,26 @@ export const CustomInputContainer = styled.div`
   border-radius: 7px;
   display: flex;
   align-items: center;
+`;
+
+const isTabActive = ({ isActive }) => {
+  if (!isActive) {
+    return css`
+      transition: all 0.5s ease;
+
+      color: #a4a6b5;
+    `;
+  }
+};
+
+export const TabHeader = styled.h2`
+  font-family: Gilroy;
+  font-weight: bold;
+  color: #000;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  margin-bottom: 2rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  ${isTabActive}
 `;

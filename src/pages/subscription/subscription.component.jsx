@@ -3,6 +3,8 @@ import Loader from "react-loader-spinner";
 import { PageContainer, Title, LoaderContainer } from "./subscription.styles";
 import SubscribeField from "../../components/subscriptionComponent/subscriptionField.component";
 import { subAuth, getCampaignDetails } from "../../firebase/subscription.utils";
+import { getCustomBranding } from "../../firebase/firebase.utils";
+
 class Subscription extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +18,8 @@ class Subscription extends Component {
       done: false,
       href: null,
       isActive: null,
+      hasCustomBranding: false,
+      customBrand: null,
     };
   }
 
@@ -24,12 +28,19 @@ class Subscription extends Component {
   async componentDidMount() {
     const href = this.props.match.url.split("/")[1];
     const linkData = await getCampaignDetails(href);
+
+    const tempCustomBranding = await getCustomBranding(
+      href,
+      linkData[0].owner_id
+    );
     if (linkData !== undefined && linkData.length !== 0) {
       this.setState({
         linkData: linkData,
         linkFound: true,
         href: href,
         isActive: linkData[0].is_active,
+        hasCustomBranding: tempCustomBranding != undefined ? true : false,
+        customBrand: tempCustomBranding,
       });
     }
 
@@ -69,28 +80,37 @@ class Subscription extends Component {
       done,
       href,
       isActive,
+      customBrand,
+      hasCustomBranding,
     } = this.state;
 
     return (
       <PageContainer>
-        <Title>Lyntmail</Title>
         {isLoading ? (
           <LoaderContainer>
             <Loader type="Puff" color="#E86F52" height={100} width={100} />
           </LoaderContainer>
         ) : (
-          <SubscribeField
-            loggedIn={loggedIn}
-            sub={sub}
-            linkFound={linkFound}
-            linkData={linkData}
-            alreadySubbed={alreadySubbed}
-            done={done}
-            setDone={this.setSuccessToTrue}
-            setAlreadySubbed={this.setAlreadySubbedToTrue}
-            href={href}
-            isActive={isActive}
-          />
+          <>
+            {hasCustomBranding ? (
+              <img src={customBrand.customlogourl} width="100px" />
+            ) : (
+              <Title>Lyntmail</Title>
+            )}
+            <SubscribeField
+              loggedIn={loggedIn}
+              sub={sub}
+              linkFound={linkFound}
+              linkData={linkData}
+              alreadySubbed={alreadySubbed}
+              done={done}
+              setDone={this.setSuccessToTrue}
+              setAlreadySubbed={this.setAlreadySubbedToTrue}
+              href={href}
+              isActive={isActive}
+              customBrand={customBrand}
+            />
+          </>
         )}
       </PageContainer>
     );

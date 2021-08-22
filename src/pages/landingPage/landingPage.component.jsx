@@ -266,12 +266,18 @@ function LandingPage({ history, currentUser, setIsLogin }) {
                 />
                 <h6>Unlimited Mailchimp links</h6>
               </Feature>
-              <Feature>
+              <Feature style={{ marginBottom: "-2.5rem" }}>
                 <AiFillCheckCircle
                   style={{ color: "#6BD570", marginRight: "1vw" }}
                 />
                 <h6>Export leads to CSV</h6>
               </Feature>
+              <Feature>
+                  <AiFillCheckCircle
+                    style={{ color: "#6BD570", marginRight: "1vw" }}
+                  />
+                  <h6>Custom branding</h6>
+                </Feature>
             </PriceTable>
 
             {
@@ -299,46 +305,18 @@ function LandingPage({ history, currentUser, setIsLogin }) {
                   />
                   <h6>Unlimited Mailchimp links</h6>
                 </Feature>
+                <Feature style={{ marginBottom: "-2.5rem" }}>
+                  <AiFillCheckCircle
+                    style={{ color: "#6BD570", marginRight: "1vw",  }}
+                  />
+                  <h6>Export leads to CSV</h6>
+                </Feature>
                 <Feature>
                   <AiFillCheckCircle
                     style={{ color: "#6BD570", marginRight: "1vw" }}
                   />
-                  <h6>Export leads to CSV</h6>
+                  <h6>Custom branding</h6>
                 </Feature>
-                <div
-                  style={{
-                    // minWidth: "18vw",
-                    // maxWidth: "18vw",
-
-                    maxHeight: "1rem",
-                    backgroundColor: "#fff",
-                    border: "1px solid #000",
-                    borderRadius: "10px",
-                    padding: "1rem",
-
-                    display: "flex",
-                    // alignItems: "center",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    cursor: "pointer",
-                  }}
-                >
-                  <h5
-                    style={{
-                      fontSize: "1rem",
-                      textAlign: "center",
-                      alignSelf: "center",
-                      marginLeft: "auto",
-                    }}
-                  >
-                    Pay with Iyzico
-                  </h5>
-                  <img
-                    src={IyzicoLogo}
-                    height="15rem"
-                    style={{ marginLeft: "auto" }}
-                  />
-                </div>
               </PriceTable>
             }
 
@@ -367,47 +345,18 @@ function LandingPage({ history, currentUser, setIsLogin }) {
                   />
                   <h6>Unlimited Mailchimp links</h6>
                 </Feature>
-                <Feature>
+                <Feature style={{ marginBottom: "-2.5rem" }}>
                   <AiFillCheckCircle
                     style={{ color: "#6BD570", marginRight: "1vw" }}
                   />
                   <h6>Export leads to CSV</h6>
                 </Feature>
-
-                <div
-                  style={{
-                    // minWidth: "18vw",
-                    // maxWidth: "18vw",
-
-                    maxHeight: "1rem",
-                    backgroundColor: "#fff",
-                    border: "1px solid #000",
-                    borderRadius: "10px",
-                    padding: "1rem",
-
-                    display: "flex",
-                    // alignItems: "center",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    cursor: "pointer",
-                  }}
-                >
-                  <h5
-                    style={{
-                      fontSize: "1rem",
-                      textAlign: "center",
-                      alignSelf: "center",
-                      marginLeft: "auto",
-                    }}
-                  >
-                    Pay with Iyzico
-                  </h5>
-                  <img
-                    src={IyzicoLogo}
-                    height="15rem"
-                    style={{ marginLeft: "auto" }}
+                <Feature>
+                  <AiFillCheckCircle
+                    style={{ color: "#6BD570", marginRight: "1vw" }}
                   />
-                </div>
+                  <h6>Custom branding</h6>
+                </Feature>
               </PriceTable>
             }
           </PriceContainer>
@@ -526,32 +475,6 @@ function LandingPage({ history, currentUser, setIsLogin }) {
               support@lyntmail.com
             </a>
           </StepContainer>
-          <div
-            style={{
-              display: "flex",
-              minWidth: "18vw",
-              maxWidth: "18vw",
-              marginTop: ".4rem",
-              marginBottom: "1rem",
-              justifyContent: "center",
-              marginBottom: "-.9rem",
-            }}
-          >
-            <FaCcVisa
-              style={{
-                fontSize: "1.5rem",
-                marginRight: "1rem",
-                color: "#262559",
-              }}
-            />
-            <FaCcMastercard
-              style={{
-                fontSize: "1.5rem",
-                marginRight: "1rem",
-                color: "#E4001B",
-              }}
-            />
-          </div>
 
           <StepContainer
             style={{
