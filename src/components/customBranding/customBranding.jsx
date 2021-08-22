@@ -223,10 +223,12 @@ function CustomLink({ isMobile, href }) {
                   ref={fileUploader}
                 />
                 <Button
+                
                   style={{ margin: "0", marginTop: "-.5rem" }}
                   onClick={async () => {
                     fileUploader.current.click();
                   }}
+                  type="button"
                 >
                   Choose a file
                 </Button>
@@ -240,7 +242,7 @@ function CustomLink({ isMobile, href }) {
                 <h5>Logo :</h5>
                 <img
                   src={
-                    data.customlogourl == undefined || isChange === true
+                    data == undefined || isChange === true
                       ? URL.createObjectURL(logo)
                       : data.customlogourl
                   }
@@ -267,6 +269,7 @@ function CustomLink({ isMobile, href }) {
                     color: "black",
                     border: "2px solid #E86F52",
                   }}
+                  type="button"
                   onClick={async () => {
                     anotherFileUploader.current.click();
                   }}

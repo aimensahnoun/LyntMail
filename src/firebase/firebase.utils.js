@@ -6,6 +6,7 @@ import shortid from "shortid";
 import { store } from "../redux/store";
 import { setCurrentUser } from "../redux/user/user.actions";
 import Cookies from "js-cookie";
+import { replace } from "formik";
 
 const config = {
   apiKey: "AIzaSyB1QDGVCToTc-ALo7fcPKt7bYpdj_v6Bp0",
@@ -26,7 +27,7 @@ export const createUserProfileDocument = async (userAuth, fullName) => {
 
   //Sending data to the NodeJS server
   try {
-    await fetch("http://localhost:3001/register", {
+    await fetch("https://lyntmail.xyz/register", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -50,7 +51,7 @@ export const getUserData = async (id) => {
     let userData;
     // Connecting to the database throught nodeJS server
     try {
-      await fetch("http://localhost:3001/getData", {
+      await fetch("https://lyntmail.xyz/getData", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -83,7 +84,7 @@ export const generateNewLink = async (name, type, count) => {
   // Sending Data to the nodeJS server
   try {
     const token = localStorage.getItem("token");
-    await fetch("http://localhost:3001/newLink", {
+    await fetch("https://lyntmail.xyz/newLink", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -112,7 +113,7 @@ export const generateNewLink = async (name, type, count) => {
 export const deleteLink = async (href, userId) => {
   try {
     const token = localStorage.getItem("token");
-    await fetch("http://localhost:3001/deleteLink", {
+    await fetch("https://lyntmail.xyz/deleteLink", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -130,7 +131,7 @@ export const deleteLink = async (href, userId) => {
 export const deleteSubscriber = async (sub_id, subscribed_to) => {
   try {
     const token = localStorage.getItem("token");
-    await fetch("http://localhost:3001/deleteSubscriber", {
+    await fetch("https://lyntmail.xyz/deleteSubscriber", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -151,7 +152,7 @@ export const createMailChimpLink = async (apiKey, name, count) => {
   let response = "";
   try {
     const token = localStorage.getItem("token");
-    await fetch("http://localhost:3001/newMailchimpLink", {
+    await fetch("https://lyntmail.xyz/newMailchimpLink", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -175,7 +176,7 @@ export const createMailChimpLink = async (apiKey, name, count) => {
 export const updateUserData = async (email, apiKey, fullName) => {
   try {
     const token = localStorage.getItem("token");
-    await fetch("http://localhost:3001/updateData", {
+    await fetch("https://lyntmail.xyz/updateData", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -198,7 +199,7 @@ export const toggleLink = async (href, quota, status) => {
   let response = null;
   try {
     const token = localStorage.getItem("token");
-    response = await fetch("http://localhost:3001/toggleLink", {
+    response = await fetch("https://lyntmail.xyz/toggleLink", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -224,7 +225,7 @@ export const confirmApiKey = async (apiKey) => {
   let response = null;
   try {
     const token = localStorage.getItem("token");
-    response = await fetch("http://localhost:3001/confirmApiKey", {
+    response = await fetch("https://lyntmail.xyz/confirmApiKey", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -250,7 +251,7 @@ export const applyCustomBranding = async (data) => {
   let response = null;
   try {
     const token = localStorage.getItem("token");
-    response = await fetch("http://localhost:3001/customBranding", {
+    response = await fetch("https://lyntmail.xyz/customBranding", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -276,16 +277,11 @@ export const applyCustomBranding = async (data) => {
   } catch (error) {}
 };
 
-export const getCustomBranding = async (linkID , owner_id) => {
+export const getCustomBranding = async (linkID, owner_id) => {
   let response = null;
   try {
-    const token = localStorage.getItem("token");
-    response = await fetch("http://localhost:3001/getCustomBranding", {
+    response = await fetch("https://lyntmail.xyz/getCustomBranding", {
       method: "post",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
       body: JSON.stringify({
         owner_id: owner_id,
         linkID: linkID,

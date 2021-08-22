@@ -44,7 +44,7 @@ export const signInWithMicroSoft = () => subAuth.signInWithPopup(Microsoftprovid
 export async function getCampaignDetails(href) {
   let linkData;
   try {
-    await fetch("http://localhost:3001/getLink", {
+    await fetch("https://lyntmail.xyz/getLink", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -58,7 +58,7 @@ export async function getCampaignDetails(href) {
 export async function getOwnerApiKey(owner_id) {
   let apiKey;
   try {
-    await fetch("http://localhost:3001/getApiKey", {
+    await fetch("https://lyntmail.xyz/getApiKey", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -82,7 +82,7 @@ const getUtcDate = () => {
 export async function handleSubscription(linkData, sub, href) {
   try {
     let response;
-    await fetch("http://localhost:3001/addSub", {
+    await fetch("https://lyntmail.xyz/addSub", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
