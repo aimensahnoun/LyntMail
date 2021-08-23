@@ -282,6 +282,7 @@ export const getCustomBranding = async (linkID, owner_id) => {
   try {
     response = await fetch("https://lyntmail.xyz/getCustomBranding", {
       method: "post",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         owner_id: owner_id,
         linkID: linkID,
@@ -294,7 +295,9 @@ export const getCustomBranding = async (linkID, owner_id) => {
       return false;
     }
     return response;
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getPieChartData = (index, data) => {

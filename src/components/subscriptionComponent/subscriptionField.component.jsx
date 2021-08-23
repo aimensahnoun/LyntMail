@@ -38,7 +38,12 @@ function SubscribeField({
     done &&
     (customBrand.redirectURL != "" || customBrand.redirectURL != undefined)
   ) {
-    window.open(customBrand.redirectURL, "_blank");
+    const link = customBrand.redirectURL;
+
+    const a = document.createElement("a");
+    a.setAttribute("href", link);
+    a.setAttribute("target", "_blank");
+    a.click();
   }
   return alreadySubbed ? (
     <Container style={{ display: "flex", alignItems: "center" }}>

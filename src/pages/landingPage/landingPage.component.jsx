@@ -55,18 +55,15 @@ import { FaCcVisa, FaCcMastercard } from "react-icons/fa";
 const howItWorks = {
   link: {
     title: "Generate Links",
-    text:
-      "Lyntmail generates URL links unique to your campaign and then you can share them with your followers on social media or link them on your website. No more boring forms that the leads do not want to fill.",
+    text: "Lyntmail generates URL links unique to your campaign and then you can share them with your followers on social media or link them on your website. No more boring forms that the leads do not want to fill.",
   },
   subscription: {
     title: "How do I capture leads through these links?",
-    text:
-      "Lyntmails does not use forms to get the data. No need to worry though, considering that most people have at least two social media accounts open at all times, links shared with followers on social media or linked on your website will get the needed data from your followers' or visitors' social media accounts with their permissions and store it in your Lyntmail dashboard. From the dashboard, you can get all the data in excel format to upload it manually to any service to launch email campaigns or you can directly integrate Lyntmail with Mailchimp",
+    text: "Lyntmails does not use forms to get the data. No need to worry though, considering that most people have at least two social media accounts open at all times, links shared with followers on social media or linked on your website will get the needed data from your followers' or visitors' social media accounts with their permissions and store it in your Lyntmail dashboard. From the dashboard, you can get all the data in excel format to upload it manually to any service to launch email campaigns or you can directly integrate Lyntmail with Mailchimp",
   },
   mailChimp: {
     title: "What if I have Mailchimp?",
-    text:
-      "Lyntmail offers integration to Mailchimp by generating URL links that are connected to your Mailchimp account. All of the leads collected through that link will be stored in the Mailchimp dashboard and from there you can launch your email campaigns.",
+    text: "Lyntmail offers integration to Mailchimp by generating URL links that are connected to your Mailchimp account. All of the leads collected through that link will be stored in the Mailchimp dashboard and from there you can launch your email campaigns.",
   },
   FuturePlans: {
     title: "Future Plans",
@@ -273,11 +270,11 @@ function LandingPage({ history, currentUser, setIsLogin }) {
                 <h6>Export leads to CSV</h6>
               </Feature>
               <Feature>
-                  <AiFillCheckCircle
-                    style={{ color: "#6BD570", marginRight: "1vw" }}
-                  />
-                  <h6>Custom branding</h6>
-                </Feature>
+                <AiFillCheckCircle
+                  style={{ color: "#6BD570", marginRight: "1vw" }}
+                />
+                <h6>Custom branding</h6>
+              </Feature>
             </PriceTable>
 
             {
@@ -307,7 +304,7 @@ function LandingPage({ history, currentUser, setIsLogin }) {
                 </Feature>
                 <Feature style={{ marginBottom: "-2.5rem" }}>
                   <AiFillCheckCircle
-                    style={{ color: "#6BD570", marginRight: "1vw",  }}
+                    style={{ color: "#6BD570", marginRight: "1vw" }}
                   />
                   <h6>Export leads to CSV</h6>
                 </Feature>
