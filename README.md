@@ -1,68 +1,27 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# What is Lyntmail
+[Lyntmail](lyntmail.com) is a tool that allows influencers, business owner, or anyone that wants to capture user contract informations for a newsletter, to do so in a very simple and a less-tidious fashion.
 
-## Available Scripts
+![clipboard.png](https://user-images.githubusercontent.com/62159014/159117282-16e6f9a1-22f9-4c02-b35c-8fbd7e25a12f.png)
 
-In the project directory, you can run:
+# How does Lyntmail work
+After creating an account, Lyntmail allows its users to create custom links 
+![Screen Shot 2022-03-19 at 13.25.36.png](https://user-images.githubusercontent.com/62159014/159117431-999e07a0-1bdb-422d-b18f-19eb7ba2c413.png)
+These links can be shared with the user's followers, any one that acceses these link are required to authenticated using one of the major social network accounts, such as Facebook , Google , Yahoo , and Github.
 
-### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://206.189.63.147:3000](http://206.189.63.147:3000) to view it in the browser.
+![Screen Shot 2022-03-19 at 13.26.58.png](https://user-images.githubusercontent.com/62159014/159117445-48348ae3-e10c-4575-9c94-2d79d4e24a30.png)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+After doing so, the followers needed data such as Email , Full Name , and Phone number if available, Are forwareded to the link owner. 
 
-### `npm test`
+And like that the user has easily captured a leads contact information within a few clicks.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Technologies used
+1. [ReactJs](https://reactjs.org) : Used in order to develop the front-end , to provide the users with a simple and interactive UI
+2. [Firebase](https://firebase.google.com) :Used in order to handle authentication, both using email and password , as well as Social Media authentication.
+3. [ExpressJs](https://expressjs.com) : Used as the [backend](https://github.com/aimensahnoun/Lyntmail-Backend) of the application , to handle users request and have direct connection to the database, as well as do some business logic
+4. [PostgreSQL](https://www.postgresql.org) : Used as a database to store all of the users data
+5. [Docker](https://www.docker.com) : Used in order to hold both database and backend in a same contrainer
+6. [DigitalOcean](https://www.digitalocean.com) : Used in order to host the docker container on the cloud
 
-### `npm run build`
+PS:Lyntmail was the first web application project that I personally worked on from scratch, there are a lot of mistakes and spaghetti code in there 😅😅😅.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
